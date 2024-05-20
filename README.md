@@ -103,7 +103,7 @@ dependencies {
     implementation 'com.github.digio-tech:sdk_offlinekyc'
 ```
 
-### Please ensure using the gateway and the digio bom dependency first before using any other feature. When using bom dependency we handle the versions for each module and dependency implementations. In case any dependency is missing for a module, please check logs for import messages. 
+### Please ensure using the gateway and the digio bom dependency first before using any other feature. When using bom dependency we handle the versions for each module and dependency implementations. In case any dependency is missing for a module, please check logs for import messages. In case you want to override provided dependency version, give the specific version when adding dependency. 
 
 
 ### Permissions : Add required permissions in manifest file and run time. Note - This is the common SDK for various KYC flows
