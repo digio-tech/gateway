@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements DigioSuccessFailu
 }
 ```
 
-5. If you wish to include google login for the process, add setGoogleButtonEnabled as true for digioConfig and also add the google login listener. Once the process of signing is done , pass the google id token in the digio instance. Follow the above steps along with the below code 
+5. If you wish to include google login for the process, add setGoogleButtonEnabled as true for digioConfig and also add the google login listener. Once the process of signing is done , pass the google id token in the digio instance. Follow the above steps along with the below code **Ensure to call the digio.completeGoogleSignIn() after token is generated**
 ```
 public class MainActivity extends AppCompatActivity implements DigioSuccessFailureInterface, GoogleSignInEventListener {
       @Override
@@ -267,6 +267,13 @@ public class MainActivity extends AppCompatActivity implements DigioSuccessFailu
            startSession()
         });
      ...
+    }
+
+        @Override
+    public void startGoogleLogin() {
+        //open the google login and signin then pass the google token 
+        String googleToken = "token from login";  
+        digio.completeGoogleSignIn(this, googleToken);
     }
 }
 ```
