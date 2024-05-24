@@ -255,6 +255,25 @@ public class MainActivity extends AppCompatActivity implements DigioSuccessFailu
 }
 ```
 
+5. If you wish to include google login for the process, add setGoogleButtonEnabled as true for digioConfig and also add the google login listener. Once the process of signing is done , pass the google id token in the digio instance. Follow the above steps along with the below code 
+```
+public class MainActivity extends AppCompatActivity implements DigioSuccessFailureInterface, GoogleSignInEventListener {
+      @Override
+    protected void onCreate(Bundle savedInstanceState) {
+     ...
+       digioConfig.setGoogleButtonEnabled(true);
+       digio.attachGoogleLoginListener(this);
+       binding.startProcessButton.setOnClickListener(v -> {
+           startSession()
+        });
+     ...
+    }
+}
+```
+
+
+6. **Note - Please check logs in the onUpdate event of the DigioSuccessFailureListener for any kind of issues or events** 
+
 
 
 
