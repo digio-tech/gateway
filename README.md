@@ -39,7 +39,7 @@ android {
 3. Add the dependencies to use the gateway sdk, please ensure to use the digio bom dependency to manage version of all imports 
 ```
 dependencies {
-    implementation(platform("com.github.digio-tech:digio-bom:v1.0.0.15"))
+    implementation(platform("com.github.digio-tech:digio-bom:v1.0.1"))
     implementation 'androidx.appcompat:appcompat'
     implementation 'com.google.android.material:material'
     implementation "androidx.navigation:navigation-fragment-ktx"
@@ -78,29 +78,61 @@ dependencies {
 
 7. Include Kyc phone camera sdk implementation in project
 ```
- implementation 'com.github.digio-tech:sdk_native_camera'
+    implementation 'com.github.digio-tech:sdk_native_camera'
+    implementation 'com.github.digio-tech:image_processor'
+    implementation 'androidx.exifinterface:exifinterface'
+
 ```
 
 8. Include Kyc with google's ml camera implementations in project 
 ```
     implementation 'com.github.digio-tech:sdk_ml_camera'
     implementation 'com.afollestad.material-dialogs:core'
-    implementation 'com.google.android.gms:play-services-mlkit-face-detection'
+    implementation 'com.google.mlkit:face-detection'
     implementation "androidx.camera:camera-core"
     implementation "androidx.camera:camera-camera2"
     implementation "androidx.camera:camera-lifecycle"
     implementation "androidx.camera:camera-view"
+    implementation "androidx.camera:camera-video"
     implementation 'androidx.preference:preference-ktx'
+    implementation 'androidx.exifinterface:exifinterface'
+
 ```
 
 9. Include Signing mandate in project 
 ```
+    implementation 'com.github.digio-tech:esign_mandate'
+    implementation 'androidx.core:core-ktx'
+    implementation 'androidx.appcompat:appcompat'
+    implementation 'androidx.activity:activity-ktx'
+    implementation("androidx.constraintlayout:constraintlayout")
 
 ```
 
 10. Include Offline Kyc in project
 ```
     implementation 'com.github.digio-tech:sdk_offlinekyc'
+    implementation 'androidx.activity:activity-ktx'
+    implementation 'androidx.constraintlayout:constraintlayout'
+    implementation 'androidx.appcompat:appcompat'
+    implementation 'com.google.android.material:material'
+    implementation "androidx.navigation:navigation-fragment-ktx"
+    implementation "androidx.navigation:navigation-ui-ktx"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout'
+    implementation 'com.google.code.gson:gson'
+
+```
+11. Include UPI in project 
+```
+    implementation 'com.github.digio-tech:sdk_upi'
+    implementation("androidx.core:core-ktx")
+    implementation("com.squareup.retrofit2:retrofit")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("androidx.fragment:fragment-ktx")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx")
+    implementation("com.squareup.retrofit2:converter-gson")
+
 ```
 
 ### Please ensure using the gateway and the digio bom dependency first before using any other feature. When using bom dependency we handle the versions for each module and dependency implementations. In case any dependency is missing for a module, please check logs for import messages. In case you want to override provided dependency version, give the specific version when adding dependency. 
@@ -155,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements DigioSuccessFailu
         Log.d(TAG, "onUpdateEvent: " + event.toString());
     }
 
-    //called when the process is completed
+    //called when the process is completed successfully
     @Override
     public void onSuccess(@Nullable DigioSdkResponse sdkResponse) {
         assert sdkResponse != null;
@@ -255,30 +287,6 @@ public class MainActivity extends AppCompatActivity implements DigioSuccessFailu
     }
 }
 ```
-
-5. If you wish to include google login for the process, add setGoogleButtonEnabled as true for digioConfig and also add the google login listener. Once the process of signing is done , pass the google id token in the digio instance. Follow the above steps along with the below code **Ensure to call the digio.completeGoogleSignIn() after token is generated**
-```
-public class MainActivity extends AppCompatActivity implements DigioSuccessFailureInterface, GoogleSignInEventListener {
-      @Override
-    protected void onCreate(Bundle savedInstanceState) {
-     ...
-       digioConfig.setGoogleButtonEnabled(true);
-       digio.attachGoogleLoginListener(this);
-       binding.startProcessButton.setOnClickListener(v -> {
-           startSession()
-        });
-     ...
-    }
-
-        @Override
-    public void startGoogleLogin() {
-        //open the google login and signin then pass the google token 
-        String googleToken = "token from login";  
-        digio.completeGoogleSignIn(this, googleToken);
-    }
-}
-```
-
 
 6. **Note - Please check logs in the onUpdate event of the DigioSuccessFailureListener for any kind of issues or events** 
 
