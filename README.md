@@ -1,6 +1,6 @@
 # gateway
 ### What is gateway sdk
-One sdk for launching all things @Digio
+One sdk for launching all things @Digio. Import only the sdk you need. Giving you full control over what you app should import and work with. 
 
 ### How to integrate 
 1. Add jitpack to your project 
@@ -287,7 +287,16 @@ public class MainActivity extends AppCompatActivity implements DigioSuccessFailu
     }
 }
 ```
-
+5. For clients willing to use UPI and OKYC sdk should pass the DigioServiceMode explicitly. 
+```
+private void initDigioConfig() {
+        setTheme()
+        ...
+        digioConfig.setEnvironment(DigioEnvironment.DEVELOPMENT); 
+        digioConfig.setServiceMode(DigioServiceMode.UPI);     //Explicitly pass UPI/OKYC 
+        ....
+    }
+```
 6. **Note - Please check logs in the onUpdate event of the DigioSuccessFailureListener for any kind of issues or events** 
 
 
