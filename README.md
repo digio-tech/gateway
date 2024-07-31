@@ -299,7 +299,10 @@ private void initDigioConfig() {
 ```
 6. **Note - Please check logs in the onUpdate event of the DigioSuccessFailureListener for any kind of issues or events**
 
-7. Progaurd rules needed for release builds 
+7. Please follow the following test app for any confusions 
+**https://drive.google.com/file/d/1XxykJHFcbcbD90A321rAYwsKkZjGDHQW/view?usp=sharing**
+
+8. Progaurd rules needed for release builds 
 ```
 -keepattributes SourceFile,LineNumberTable
 -keep public class * extends java.lang.Exception
