@@ -39,7 +39,7 @@ android {
 3. Add the dependencies to use the gateway sdk, please ensure to use the digio bom dependency to manage version of all imports 
 ```
 dependencies {
-    implementation(platform("com.github.digio-tech:digio-bom:v1.0.1"))
+    implementation(platform("com.github.digio-tech:digio-bom:v1.0.6"))
     implementation 'androidx.appcompat:appcompat'
     implementation 'com.google.android.material:material'
     implementation "androidx.navigation:navigation-fragment-ktx"
