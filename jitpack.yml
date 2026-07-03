@@ -1,3 +1,3 @@
 install:
-  - FILE="-Dfile=digio_gateway-5.1.23.aar"
-  - mvn install:install-file $FILE -DgroupId=com.lb.sdktest -DartifactId=test -Dversion=5.1.23 -Dpackaging=aar -DgeneratePom=true
+  - FILE="-Dfile=digio_gateway-5.1.24.aar"
+  - mvn install:install-file $FILE -DgroupId=com.lb.sdktest -DartifactId=test -Dversion=5.1.24 -Dpackaging=aar -DgeneratePom=true
