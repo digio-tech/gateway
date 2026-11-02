@@ -38,7 +38,7 @@ android {
 3. Add the dependencies to use the gateway sdk, please ensure to use the digio bom dependency to manage version of all imports 
 ```
 dependencies {
-    implementation(platform("com.github.digio-tech:digio-bom:v1.0.91"))
+    implementation(platform("com.github.digio-tech:digio-bom:v1.0.93"))
     implementation 'androidx.appcompat:appcompat'
     implementation 'com.google.android.material:material'
     implementation "androidx.navigation:navigation-fragment-ktx"
@@ -311,7 +311,6 @@ private void initDigioConfig() {
 -keepattributes JavascriptInterface
 -keepattributes *Annotation*
 -keepattributes Signature
--optimizations !method/inlining/*
 -keeppackagenames
 
 -keepnames class androidx.navigation.fragment.NavHostFragment
